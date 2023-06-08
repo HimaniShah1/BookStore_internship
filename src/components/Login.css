@@ -1,14 +1,12 @@
-.register-container {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     z-index: 1;
-    /* overflow-y: scroll; */
-    /* padding-top: 100px; */
 }
 
-.register-form {
+.login-form {
     background: linear-gradient(0deg, rgba(145, 58, 67, 1) 0%, rgba(50, 27, 30, 1) 100%);
     font-size: 20px;
     padding: 20px;
@@ -18,27 +16,23 @@
     align-items: center;
 }
 
-h2 {
+.login-form h2 {
     text-align: center;
     color: #ccc;
 }
 
-.form-group {
+.login-form .form-group {
     margin-bottom: 20px;
 }
 
-.error {
-    font-size: 15px;
-    color: rgb(185, 27, 27);
-}
-
-label {
+.login-form label {
     display: block;
     margin-bottom: 5px;
     color: #ccc;
 }
 
-input {
+.login-form input[type="email"],
+.login-form input[type="password"] {
     width: 100%;
     padding-right: 2px;
     padding-top: 5px;
@@ -46,19 +40,20 @@ input {
     border: 1px solid #ccc;
 }
 
-select{
-    width: 100%;
-    padding-right: 2px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid #ccc;
+.login-form .error {
+    font-size: 15px;
+    color: rgb(185, 27, 27);
 }
 
-.register-button{
+.login-button {
     display: flex;
     justify-content: center; 
     font-size: 18px;   
     border-radius: 7px;
     background-color: rgba(50, 27, 30, 1);
     color: #f3b7b7;
+}
+
+.login-button:hover {
+    background-color: #6a292f;
 }

@@ -1,5 +1,10 @@
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+// import { Switch } from '@mui/material';
+import Home from './components/pages/Home'
+import Register from './components/Register';
+import Login from './components/Login';
 // import {HomePage} from "./HomePage";
 // import { Apple } from './Apple';
 // import { NotFound } from './NotFound';
@@ -16,7 +21,16 @@ const App = () => {
   
   return (
     <>
-  <Navbar links= {linksArray}/>
+    <Router>
+      <Navbar links= {linksArray}/>
+       <Routes>
+               <Route path = "/" element = {<Home/>}></Route>
+               <Route path = "/home" element = {<Home/>}></Route>
+               <Route  path = "/register" element = {<Register/>}></Route>
+               <Route  path = "/login" element = {<Login/>}></Route>
+      </Routes>
+    </Router>
+  
   
 </>
   );

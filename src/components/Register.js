@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './Register.css';
+import axios from "axios";
+import {  ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-    // <h1>Don't have an account? Register here!</h1>
+
+ useEffect( () => {
+  axios.get("https://jsonplaceholder.typicode.com/posts").then((res) => {
+    console.log("User details: ",res.data);
+  });
+ },[]);
+  
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -31,12 +41,59 @@ const Register = () => {
       confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Confirm password is required'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async(values) => {
       console.log(values);
+
+      const requestData = {
+        userFirstName : values.firstName,
+        userLastName : values.lastName,
+        userEmail : values.email,
+        userRole : values.role,
+        userPassword : values.password,
+        userConfirmPass : values.confirmPassword,
+      }
+
+      //API call to post submit the form
+
+     const res = await axios.post("https://jsonplaceholder.typicode.com/posts", requestData);
+
+     if(res.status === 201){
+          console.log(res.data.id);
+          toast.success('Registered successfully!', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+      });
+
+        }
+   
+
+      axios.delete("https://jsonplaceholder.typicode.com/posts/1").then((res) => {
+        if(res.status === 200){
+          toast.success('Data deleted successfully', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",          
+        });
+      }
+    });
+
     },
   });
 
   return (
+    <>
+    <ToastContainer/>
     <div className="register-container">
       <div className="register-form">
         <h2>Don't have an account? Register here!</h2 >
@@ -137,6 +194,7 @@ const Register = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
