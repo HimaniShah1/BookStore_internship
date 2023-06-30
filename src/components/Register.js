@@ -5,8 +5,12 @@ import './Register.css';
 import axios from "axios";
 import {  ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
+
 
 const Register = () => {
+ const dispatch = useDispatch();
 
  useEffect( () => {
   axios.get("https://jsonplaceholder.typicode.com/posts").then((res) => {
@@ -69,24 +73,27 @@ const Register = () => {
           progress: undefined,
           theme: "dark",
       });
+         
+      dispatch(addUser(values));
 
         }
    
 
-      axios.delete("https://jsonplaceholder.typicode.com/posts/1").then((res) => {
-        if(res.status === 200){
-          toast.success('Data deleted successfully', {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",          
-        });
-      }
-    });
+    //   axios.delete("https://jsonplaceholder.typicode.com/posts/1").then((res) => {
+    //     if(res.status === 200){
+    //       toast.success('Data deleted successfully', {
+    //       position: "top-center",
+    //       autoClose: 3000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "dark",          
+    //     });
+    //   }
+    // }
+    // );
 
     },
   });

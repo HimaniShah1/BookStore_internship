@@ -5,12 +5,19 @@ import './Login.css';
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  // const user = useSelector((store) => store.userInfo);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
+      password: '', 
     },
     validationSchema: Yup.object({
       email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -38,11 +45,20 @@ const Login = () => {
             progress: undefined,
             theme: "dark",
           });
+
+          dispatch(addUser(values));
+          navigate("/");
+          
+         
         }
       });
+
+       
     },
   });
 
+  
+  // if(!isVisible) return null;
   return (
     <div className="login-container">
       <div className="login-form">
@@ -77,7 +93,10 @@ const Login = () => {
               <div className="error">{formik.errors.password}</div>
             )}
           </div>
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" 
+          className="login-button" 
+          >Login</button>
+        
         </form>
       </div>
     </div>

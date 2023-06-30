@@ -1,0 +1,55 @@
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition-property: transform;
+    transition-duration: 0.3s;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.card:hover {
+    transform: translateY(-1px) scale(1.05);
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-footer {
+    justify-items: flex-start;
+    flex-shrink: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+.price {
+    color: #333333;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.add-btn{
+    margin-right: 6%;
+}
+
+.card-container{
+    margin-top: 5%;
+}
+
+.card-dimension{
+    height: 450px;
+}
+
+.card-book-img{
+    height: 450px;
+    width: auto;
+    padding-right: 5%;
+
+}

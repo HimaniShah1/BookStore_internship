@@ -32,6 +32,7 @@
     flex: 1;
     margin: 0 1rem;
     border-radius: 10px;
+    background-color: whitesmoke;
 }
 
 .books__item__link {

@@ -1,26 +1,21 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-// import { Switch } from '@mui/material';
 import Home from './components/pages/Home'
 import Register from './components/Register';
 import Login from './components/Login';
-// import {HomePage} from "./HomePage";
-// import { Apple } from './Apple';
-// import { NotFound } from './NotFound';
-// import { globalStyles } from './constants';
-// import appStyle from "./AppStyle.module.css";
-// import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-// import { ThemeProvider } from '@emotion/react';
-// import { theme } from './styles';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Cart from './components/Cart'
+import Card from './components/Card'
 
-
-const linksArray = ["Users","Category","Books"];
+const linksArray = ["Users","Category","Books","Cart"];
 
 const App = () => {
   
   return (
     <>
+ <Provider store={store}>
     <Router>
       <Navbar links= {linksArray}/>
        <Routes>
@@ -28,9 +23,11 @@ const App = () => {
                <Route path = "/home" element = {<Home/>}></Route>
                <Route  path = "/register" element = {<Register/>}></Route>
                <Route  path = "/login" element = {<Login/>}></Route>
+               <Route path = "/cart" element = {<Cart/>}></Route>
+               <Route path = "/card" element = {<Card/>}></Route>
       </Routes>
     </Router>
-  
+  </Provider>
   
 </>
   );

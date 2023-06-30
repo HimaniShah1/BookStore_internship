@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Drawer, Grid, Tab, Tabs, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Grid, Tab, Tabs, Toolbar} from '@mui/material'
 import React, { useState } from 'react'
 // import {FaShoppingCart} from 'react-icons/fa'
 import { Link} from 'react-router-dom';
@@ -20,8 +20,13 @@ const Navbar = ({links}) => {
                <Grid item xs={6}>
                   <Tabs indicatorColor='secondary' textColor='inherit' value={value} onChange={(e,val)=>setValue(val)}>
                      {links.map((link,index)=>
-                     <Tab key = {index} label={link}/>
-                     )}
+                     <Tab
+                      key={index}
+                      label={link}
+                      component={link === 'Books' || link === 'Cart' ? Link : undefined}
+                      to={link === 'Books' ? '/card' : link === 'Cart' ? '/cart' : undefined}
+                     />   
+                   )}
                   </Tabs>
                </Grid>
                <Grid item xs={4} container justifyContent="flex-end">
